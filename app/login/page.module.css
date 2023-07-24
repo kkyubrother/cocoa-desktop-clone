@@ -1,0 +1,42 @@
+main.main {
+    background-color: yellow;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.icon {
+    width: 160px;
+    height: 160px;
+}
+
+div.divider {
+    margin-block: 1rem;
+}
+div.divider::before, div.divider::after {
+    content: "━━━━━";
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+.tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -60px;
+    z-index: 1;
+}
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
