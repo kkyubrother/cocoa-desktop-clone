@@ -12,7 +12,7 @@ import {
 } from "react-icons/bs"
 import {BiSolidUser} from "react-icons/bi"
 import {TbCapture} from "react-icons/tb"
-import style from "@/app/chat/[id]/page.module.css"
+import style from "@/app/chat/1/page.module.css"
 
 type ChatIDPageType = {
   params: { id: string }
