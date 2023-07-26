@@ -3,8 +3,6 @@ import Link from "next/link";
 export default function LoginFormComponent() {
     return (
         <form className="col-4">
-            {/*<fieldset>*/}
-            {/*<legend>로그인</legend>*/}
             <p>
                 <label>이메일</label>
                 <input id="input__email" placeholder="Email Input"/>
@@ -22,7 +20,6 @@ export default function LoginFormComponent() {
                     로그인
                 </Link>
             </p>
-            {/*</fieldset>*/}
         </form>
     );
 }

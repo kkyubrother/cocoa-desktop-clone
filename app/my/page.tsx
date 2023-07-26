@@ -47,12 +47,10 @@ export default function My() {
         className={"container " + styles.main}
         style={{
           paddingLeft: "90px",
-          // overflowY: "scroll",
-          // overflowX: "hidden",
         }}
       >
         <h3 className={"row"}>친구</h3>
-        <div className={"row"} style={{}}>
+        <div className={"row"}>
           <UserImageComponent />
           <div
             style={{

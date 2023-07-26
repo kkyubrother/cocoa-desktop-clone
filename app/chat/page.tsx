@@ -1,12 +1,12 @@
 import AsideComponent from "@/app/common/AsideComponent";
 import styles from "@/app/my/page.module.css";
-import UserImageComponent from "@/app/UserImageComponent";
 import UserImageListComponent from "@/app/my/UserImageListComponent";
 import {BsTriangleFill, BsSearch, BsWechat, BsFillPlusCircleFill, BsXLg} from "react-icons/bs"
 import Image, {StaticImageData} from "next/image";
 import IconApple from "@/public/img/pngwing.com.png"
 import IconSamsung from "@/public/img/pngwing.com(1).png";
 import IconBurgerking from "@/public/img/pngwing.com(2).png";
+import Link from "next/link";
 
 const colors = [
   {
@@ -67,6 +67,7 @@ function ChatRow(props: {
   count: string
 }) {
   return (
+    <Link href={"/chat/1"} style={{color: "black"}}>
     <div className={"row"} style={{
       cursor: "pointer",
       display: "flex",
@@ -128,5 +129,5 @@ function ChatRow(props: {
           {props.count}
         </div>
       </div>
-    </div>)
+    </div></Link>)
 }

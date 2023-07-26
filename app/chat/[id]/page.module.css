@@ -1,0 +1,40 @@
+.bubble {
+    position: relative;
+    margin: 10px;
+    /*padding: 20px;*/
+    /*width: 200px;*/
+    /*height: 60px;*/
+    color: #000;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.bubble:after {
+    content: "";
+    position: absolute;
+    top: 11px;
+    left: -10px;
+    border-right: 10px solid #fff;
+    border-top: 0px solid transparent;
+    border-bottom: 10px solid transparent;
+}
+.reverse_bubble {
+    position: relative;
+    padding: 1rem;
+    color: #000;
+    border-radius: 10px;
+    background-color: #ffeb33;
+}
+
+.reverse_bubble:after {
+    content: "";
+    position: absolute;
+    top: 11px;
+    right: -10px;
+    border-left: 10px solid #ffeb33;
+    border-top: 0px solid transparent;
+    border-bottom: 10px solid transparent;
+}
+.btn_send:hover {
+    background-color: #ffeb33;
+}
