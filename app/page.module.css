@@ -4,3 +4,6 @@
     padding-block: 3rem;
     height: 100vh;
 }
+.announceText {
+    font-weight: bold;
+}

@@ -1,6 +1,7 @@
 .bubble {
     position: relative;
     margin: 10px;
+    max-width: 50vw;
     /*padding: 20px;*/
     /*width: 200px;*/
     /*height: 60px;*/
@@ -20,6 +21,7 @@
 }
 .reverse_bubble {
     position: relative;
+    max-width: 50vw;
     padding: 1rem;
     color: #000;
     border-radius: 10px;
