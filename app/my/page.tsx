@@ -3,42 +3,22 @@ import UserImageComponent from "@/app/UserImageComponent";
 import { LoremIpsum } from "lorem-ipsum";
 import FriendListItemComponent from "@/app/my/FriendListItemComponent";
 import AsideComponent from "@/app/common/AsideComponent";
+import PythonIcon from "@/public/icon/python.png";
+import ReactIcon from "@/public/icon/react.png";
+import CSS3Icon from "@/public/icon/css3.png";
+import HTML5Icon from "@/public/icon/html5.png";
+import JavaIcon from "@/public/icon/java.png";
+import RustIcon from "@/public/icon/rust.png";
+import JavascriptIcon from "@/public/icon/javascript.png";
+import MariaDBIcon from "@/public/icon/mariadb.png";
+import NestJSIcon from "@/public/icon/NestJS.svg";
+import NextJSIcon from "@/public/icon/nextjs.svg";
+import NginxIcon from "@/public/icon/nginx.png";
+import NodeIcon from "@/public/icon/node.png";
+import UbuntuIcon from "@/public/icon/ubuntu.png";
+import MyPicture from "@/public/icon/my.png";
+import Image from "next/image";
 
-const lorem = new LoremIpsum({});
-const friends_count = Math.floor(Math.random() * 30);
-
-const names = [
-  "표재정",
-  "장연희",
-  "풍성윤",
-  "허다연",
-  "송수아",
-  "풍승아",
-  "제갈효주",
-  "복형수",
-  "임경희",
-  "복혜훈",
-  "전수희",
-  "송희옥",
-  "성윤아",
-  "노동석",
-  "탁선옥",
-  "권혜자",
-  "최원호",
-  "제갈희수",
-  "고수경",
-  "최유연",
-  "한기우",
-  "권창수",
-  "설영아",
-  "황승수",
-  "조효진",
-  "유승현",
-  "한준철",
-  "설승식",
-  "탁태주",
-  "추기연",
-];
 export default function My() {
   return (
     <main className={styles.main}>
@@ -51,7 +31,17 @@ export default function My() {
       >
         <h3 className={"row"}>친구</h3>
         <div className={"row"}>
-          <UserImageComponent />
+          <div
+            style={{
+              width: 60,
+              height: 60,
+              borderRadius: 25,
+            }}
+            className={"text-center is-center"}
+          >
+            <Image src={MyPicture} alt={"김규형"} width={60} height={60} />
+          </div>
+          {/*<UserImageComponent />*/}
           <div
             style={{
               lineHeight: "1rem",
@@ -72,24 +62,75 @@ export default function My() {
           </div>
         </div>
         <hr />
-        <h4>{`친구 ${friends_count}`}</h4>
-        {getRandomElements(names, friends_count).map((n) => (
-          <FriendListItemComponent key={n} name={n} />
-        ))}
+        <h4>{`친구 목록`}</h4>
+        <FriendListItemComponent
+          icon={PythonIcon}
+          name={"Python"}
+          description={"나의 절친"}
+        />
+        <FriendListItemComponent
+          icon={ReactIcon}
+          name={"React"}
+          description={"함께라면 즐거워"}
+        />
+        <FriendListItemComponent
+          icon={CSS3Icon}
+          name={"CSS3"}
+          description={"함께라면 즐거워"}
+        />
+        <FriendListItemComponent
+          icon={HTML5Icon}
+          name={"HTML5"}
+          description={"함께라면 즐거워"}
+        />
+        <FriendListItemComponent
+          icon={JavascriptIcon}
+          name={"Javascript"}
+          description={"함께라면 즐거워"}
+        />
+        <FriendListItemComponent
+          icon={MariaDBIcon}
+          name={"MariaDB"}
+          description={"함께라면 즐거워"}
+        />
+        <FriendListItemComponent
+          icon={NestJSIcon}
+          name={"NestJS"}
+          description={"함께라면 즐거워"}
+        />
+        <FriendListItemComponent
+          icon={NextJSIcon}
+          name={"NextJS"}
+          description={"함께라면 즐거워"}
+        />
+        <FriendListItemComponent
+          icon={NginxIcon}
+          name={"Nginx"}
+          description={"함께라면 즐거워"}
+        />
+        <FriendListItemComponent
+          icon={NodeIcon}
+          name={"NodeJS"}
+          description={"함께라면 즐거워"}
+        />
+        <FriendListItemComponent
+          icon={UbuntuIcon}
+          name={"Ubuntu"}
+          description={"함께라면 즐거워"}
+        />
+        <hr />
+        <h4>{`친해지려는 친구 목록`}</h4>
+        <FriendListItemComponent
+          icon={JavaIcon}
+          name={"Java"}
+          description={"함께라면 즐거워"}
+        />
+        <FriendListItemComponent
+          icon={RustIcon}
+          name={"Rust"}
+          description={"함께라면 즐거워"}
+        />
       </div>
     </main>
   );
-}
-
-function getRandomElements(arr: string[], num: number) {
-  const randomElements = [];
-  const arrCopy = arr.slice(); // 원본 배열 복사
-
-  while (randomElements.length < num && arrCopy.length > 0) {
-    const randomIndex = Math.floor(Math.random() * arrCopy.length);
-    const randomElement = arrCopy.splice(randomIndex, 1)[0];
-    randomElements.push(randomElement);
-  }
-
-  return randomElements;
 }
