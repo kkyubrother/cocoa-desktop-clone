@@ -32,7 +32,7 @@ export default function ChatPage() {
       <div
         className={"container " + styles.main}
         style={{
-          paddingLeft: "90px",
+          paddingLeft: "100px",
         }}
       >
         <h4
