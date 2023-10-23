@@ -14,9 +14,11 @@ import Image, { StaticImageData } from "next/image";
 import { BiSolidUser } from "react-icons/bi";
 import { TbCapture } from "react-icons/tb";
 import style from "@/app/chat/[id]/page.module.css";
-import IconApple from "/public/img/pngwing.com.png";
-import IconSamsung from "/public/img/pngwing.com(1).png";
-import IconBurgerking from "/public/img/pngwing.com(2).png";
+import IconApple from "/public/img/apple.png";
+import IconSamsung from "/public/img/samsung.png";
+import IconBurgerking from "/public/img/burgerking.png";
+import IconPython from "/public/icon/python.png";
+import ChatBodyComponent from "./ChatBodyComponent";
 
 const CHAT_DATA = {
   1: {
@@ -120,115 +122,56 @@ const CHAT_DATA = {
       },
     ],
   },
-};
 
-type ChatIDPageType = {
-  params: { id: string };
+  5: {
+    header: { userImage: IconPython, userName: ["Python"] },
+    messages: [
+      {
+        type: "date",
+        dateText: "2023년 10월 19일 목요일",
+      },
+      {
+        type: "right",
+        message: "내가 가장 자신있는 파이썬!",
+        timeText: "오후 7:14",
+      },
+      {
+        type: "left",
+        userImage: IconPython,
+        userName: "Python",
+        message: "군대에서 독학으로 시작했지",
+        timeText: "오후 7:14",
+      },
+      {
+        type: "left",
+        userImage: IconPython,
+        userName: "Python",
+        message: "그 후 아는 분의 부탁으로 스터디룸 관리 프로그램도 만들었지",
+        timeText: "오후 7:14",
+      },
+      {
+        type: "right",
+        message: "그래, 그러면서 sms 라이브러리도 포팅했지",
+        timeText: "오후 7:14",
+      },
+      {
+        type: "right",
+        message:
+          "그리고 유튜브 강의를 보며 공부하기 위한 강의 노트 사이트도 만들었지",
+        timeText: "오후 7:14",
+      },
+      {
+        type: "left",
+        userImage: IconPython,
+        userName: "Python",
+        message:
+          "그래, Python으로 Backend를 구축하고, React와 CKEditor로 Frontend를 구축했지",
+        timeText: "오후 7:14",
+      },
+    ],
+  },
 };
-
-type RowDateType = {
-  dateText: string;
-};
-type RowLeftType = {
-  userImage: StaticImageData | null;
-  userName: string;
-  message: string;
-  timeText: string;
-};
-type RowRightType = {
-  message: string;
-  timeText: string;
-};
-type ChatHeaderType = {
-  userImage: StaticImageData | null;
-  userName: string[];
-};
-function RowDate(props: RowDateType) {
-  return (
-    <li
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        marginBottom: "1rem",
-      }}
-    >
-      <div
-        style={{
-          backgroundColor: "#a7b9c9",
-          borderRadius: "50px",
-          padding: "3px 20px",
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-        <BsCalendar3 />
-        {props.dateText}
-      </div>
-    </li>
-  );
-}
-function RowLeft(props: RowLeftType) {
-  return (
-    <li>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          marginLeft: "1rem",
-          marginBottom: "1rem",
-        }}
-      >
-        {props.userImage ? (
-          <Image src={props.userImage} alt={"icon"} width={60} height={60} />
-        ) : (
-          <UserImageComponent />
-        )}
-        <div>
-          <div>{props.userName}</div>
-          <div
-            style={{
-              padding: "1rem",
-            }}
-            className={style.bubble}
-          >
-            {props.message}
-          </div>
-        </div>
-        <div style={{ display: "flex", alignItems: "flex-end" }}>
-          {props.timeText}
-        </div>
-      </div>
-    </li>
-  );
-}
-function RowRight(props: RowRightType) {
-  return (
-    <li>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row-reverse",
-          marginRight: "3rem",
-          marginBottom: "1rem",
-        }}
-      >
-        <div>
-          <div className={style.reverse_bubble}>{props.message}</div>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "flex-end",
-            paddingRight: "1rem",
-          }}
-        >
-          {props.timeText}
-        </div>
-      </div>
-    </li>
-  );
-}
-function ChatHeader(props: ChatHeaderType) {
+function ChatHeader(props) {
   return (
     <header
       style={{
@@ -288,18 +231,15 @@ function ChatHeader(props: ChatHeaderType) {
   );
 }
 
-export default function Page(props: ChatIDPageType) {
+export default function Page(props) {
   const { id } = props.params;
-  const data =
-    id === "1"
-      ? CHAT_DATA[1]
-      : id === "2"
-      ? CHAT_DATA[2]
-      : id === "3"
-      ? CHAT_DATA[3]
-      : id === "4"
-      ? CHAT_DATA[4]
-      : CHAT_DATA[1];
+  const chat_id = Number(id);
+  const data = CHAT_DATA.hasOwnProperty(chat_id)
+    ? // @ts-ignore
+      CHAT_DATA[chat_id]
+    : CHAT_DATA[1];
+  console.log(data);
+
   return (
     <main
       style={{ backgroundColor: "#bacee0", width: "100vw", height: "100%" }}
@@ -308,41 +248,7 @@ export default function Page(props: ChatIDPageType) {
         userImage={data.header.userImage}
         userName={data.header.userName}
       />
-      <section
-        style={{
-          overflowY: "scroll",
-          paddingTop: "120px",
-          paddingBottom: "143px",
-          minHeight: "100vh",
-        }}
-      >
-        <ol style={{ listStyle: "none", padding: 0 }}>
-          {data.messages.map((message) => {
-            switch (message.type) {
-              case "date":
-                return <RowDate dateText={message.dateText ?? ""} />;
-              case "right":
-                return (
-                  <RowRight
-                    message={message.message ?? ""}
-                    timeText={message.timeText ?? ""}
-                  />
-                );
-              case "left":
-                return (
-                  <RowLeft
-                    userImage={message.userImage ?? null}
-                    userName={message.userName ?? ""}
-                    message={message.message ?? ""}
-                    timeText={message.timeText ?? ""}
-                  />
-                );
-              default:
-                return null;
-            }
-          })}
-        </ol>
-      </section>
+      <ChatBodyComponent chat={data} />
       <footer
         style={{
           position: "fixed",

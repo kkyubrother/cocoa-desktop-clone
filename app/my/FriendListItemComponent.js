@@ -15,11 +15,7 @@ const colors = [
   },
   { main: "#a1b6e9", sub: "#cbd6f2" },
 ];
-export default function FriendListItemComponent(props: {
-  icon: StaticImageData;
-  name: string;
-  description: string;
-}) {
+export default function FriendListItemComponent(props) {
   return (
     <div>
       <div

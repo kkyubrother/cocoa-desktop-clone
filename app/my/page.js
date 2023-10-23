@@ -18,6 +18,7 @@ import NodeIcon from "@/public/icon/node.png";
 import UbuntuIcon from "@/public/icon/ubuntu.png";
 import MyPicture from "@/public/icon/my.png";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function My() {
   return (
@@ -29,38 +30,44 @@ export default function My() {
           paddingLeft: "90px",
         }}
       >
-        <h3 className={"row"}>친구</h3>
-        <div className={"row"}>
-          <div
-            style={{
-              width: 60,
-              height: 60,
-              borderRadius: 25,
-            }}
-            className={"text-center is-center"}
-          >
-            <Image src={MyPicture} alt={"김규형"} width={60} height={60} />
-          </div>
-          {/*<UserImageComponent />*/}
-          <div
-            style={{
-              lineHeight: "1rem",
-              height: "60px",
-              paddingBlock: "1rem",
-              marginLeft: "10px",
-            }}
-          >
-            <p style={{ fontWeight: 600 }}>김규형</p>
-            <p
+        <h3 className={"row"}>나</h3>
+        <Link
+          href={"https://kesuna.com"}
+          rel={"noopener noreferrer"}
+          target={"_blank"}
+        >
+          <div className={"row"}>
+            <div
               style={{
-                color: "#737373",
+                width: 60,
+                height: 60,
+                borderRadius: 25,
+              }}
+              className={"text-center is-center"}
+            >
+              <Image src={MyPicture} alt={"김규형"} width={60} height={60} />
+            </div>
+            {/*<UserImageComponent />*/}
+            <div
+              style={{
+                lineHeight: "1rem",
+                height: "60px",
+                paddingBlock: "1rem",
+                marginLeft: "10px",
               }}
             >
-              {"Don't rest until you reach your goal!"}
-              {}
-            </p>
+              <p style={{ fontWeight: 600 }}>김규형</p>
+              <p
+                style={{
+                  color: "#737373",
+                }}
+              >
+                {"Don't rest until you reach your goal!"}
+                {}
+              </p>
+            </div>
           </div>
-        </div>
+        </Link>
         <hr />
         <h4>{`친구 목록`}</h4>
         <FriendListItemComponent

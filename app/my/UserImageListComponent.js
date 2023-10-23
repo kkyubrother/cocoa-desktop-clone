@@ -1,9 +1,6 @@
 import { BiSolidUser } from "react-icons/bi";
 
-export default function UserImageListComponent(props: {
-  main: string;
-  sub: string;
-}) {
+export default function UserImageListComponent(props) {
   const size = 40;
   const padding = 20;
   return (

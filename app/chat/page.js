@@ -9,9 +9,9 @@ import {
   BsXLg,
 } from "react-icons/bs";
 import Image, { StaticImageData } from "next/image";
-import IconApple from "/public/img/pngwing.com.png";
-import IconSamsung from "/public/img/pngwing.com(1).png";
-import IconBurgerking from "/public/img/pngwing.com(2).png";
+import IconApple from "/public/img/apple.png";
+import IconSamsung from "/public/img/samsung.png";
+import IconBurgerking from "/public/img/burgerking.png";
 import Link from "next/link";
 
 const colors = [
@@ -24,6 +24,41 @@ const colors = [
     sub: "#c1e2ec",
   },
   { main: "#a1b6e9", sub: "#cbd6f2" },
+];
+
+const CHAT = [
+  {
+    id: 1,
+    icon: null,
+    title: "저장한 메세지",
+    description: "저장한 메세지",
+    count: 1,
+    time: "오전 11:50",
+  },
+  {
+    id: 2,
+    icon: IconApple,
+    title: "사과",
+    description: "사과를 좋아합니다",
+    count: 1,
+    time: "2023-07-24",
+  },
+  {
+    id: 3,
+    icon: IconSamsung,
+    title: "세별",
+    description: "어둠을 밝히는 별이 되고싶습니다",
+    count: 3,
+    time: "12:30",
+  },
+  {
+    id: 4,
+    icon: IconBurgerking,
+    title: "버거왕",
+    description: "와퍼는 맛있죠",
+    count: 99,
+    time: "1시간 전",
+  },
 ];
 export default function ChatPage() {
   return (
@@ -88,7 +123,7 @@ export default function ChatPage() {
                 borderRadius: "50px",
                 backgroundColor: "whitesmoke",
                 width: "calc(100% - 40px)",
-                paddingLeft: "1.25rem",
+                paddingLeft: "3.5rem",
               }}
             />
             <div
@@ -111,52 +146,16 @@ export default function ChatPage() {
               }}
             />
           </div>
-          <ChatRow
-            id={1}
-            icon={null}
-            count={"1"}
-            description={"저장한 메세지"}
-            time={"오전 11:50"}
-            title={"저장한 메세지"}
-          />
-          <ChatRow
-            id={2}
-            icon={IconApple}
-            count={"1"}
-            description={"사과를 좋아합니다"}
-            time={"2023-07-24"}
-            title={"사과"}
-          />
-          <ChatRow
-            id={3}
-            title={"세별"}
-            description={"어둠을 밝히는 별이 되고싶습니다"}
-            icon={IconSamsung}
-            time={"12:30"}
-            count={"3"}
-          />
-          <ChatRow
-            id={4}
-            title={"버거왕"}
-            description={"와퍼는 맛있죠"}
-            icon={IconBurgerking}
-            time={"1시간 전"}
-            count={"99"}
-          />
+          {CHAT.map((chat) => (
+            <ChatRow key={chat.id} {...chat} />
+          ))}
         </div>
       </div>
     </main>
   );
 }
 
-function ChatRow(props: {
-  id: number;
-  title: string;
-  description: string;
-  icon: StaticImageData | null;
-  time: string;
-  count: string;
-}) {
+function ChatRow(props) {
   return (
     <Link href={`/chat/${props.id}`} style={{ color: "black" }}>
       <div
@@ -210,11 +209,11 @@ function ChatRow(props: {
         </div>
         <div style={{ position: "relative" }}>
           <span style={{ fontSize: "1.2rem", color: "gray" }}>
-            {props.time}
+            {`${props.time}`}
           </span>
           <div
             style={{
-              width: `${12 + props.count.length * 6}px`,
+              width: `${12 + props.count.toString().length * 6}px`,
               height: "18px",
               backgroundColor: "tomato",
               borderRadius: "9px",
@@ -227,7 +226,7 @@ function ChatRow(props: {
               textAlign: "center",
             }}
           >
-            {props.count}
+            {`${props.count}`}
           </div>
         </div>
       </div>
