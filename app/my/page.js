@@ -1,7 +1,7 @@
 import styles from "@/app/my/page.module.css";
 import UserImageComponent from "@/app/UserImageComponent";
 import { LoremIpsum } from "lorem-ipsum";
-import FriendListItemComponent from "@/app/my/FriendListItemComponent";
+import FriendListItemComponent from "/app/my/FriendListItemComponent";
 import AsideComponent from "@/app/common/AsideComponent";
 import PythonIcon from "@/public/icon/python.png";
 import ReactIcon from "@/public/icon/react.png";
@@ -74,11 +74,13 @@ export default function My() {
           icon={PythonIcon}
           name={"Python"}
           description={"나의 절친"}
+          link={"/chat/5"}
         />
         <FriendListItemComponent
           icon={ReactIcon}
           name={"React"}
           description={"함께라면 즐거워"}
+          link={"/chat/6"}
         />
         <FriendListItemComponent
           icon={CSS3Icon}

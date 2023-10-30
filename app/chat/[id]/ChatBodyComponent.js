@@ -4,7 +4,9 @@ import style from "@/app/chat/[id]/page.module.css";
 import { BsCalendar3 } from "react-icons/bs";
 import Image from "next/image";
 import UserImageComponent from "../../UserImageComponent";
+
 import { useEffect, useState } from "react";
+import renderMarkdownHyperlink from "../../../util/markdown";
 
 function RowDate(props) {
   return (
@@ -54,7 +56,7 @@ function RowLeft(props) {
             }}
             className={style.bubble}
           >
-            {props.message}
+            {renderMarkdownHyperlink(props.message)}
           </div>
         </div>
         <div style={{ display: "flex", alignItems: "flex-end" }}>
@@ -76,7 +78,9 @@ function RowRight(props) {
         }}
       >
         <div>
-          <div className={style.reverse_bubble}>{props.message}</div>
+          <div className={style.reverse_bubble}>
+            {renderMarkdownHyperlink(props.message)}
+          </div>
         </div>
         <div
           style={{

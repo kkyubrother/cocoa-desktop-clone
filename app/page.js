@@ -8,10 +8,10 @@ import LoginFormComponent from "@/app/LoginFormComponent";
 
 export default async function Home() {
   // @ts-ignore
-  const client = await connectDB;
-  const db = client.db("forum");
-  let result = await db.collection("post").find().toArray();
-  console.log(result);
+  // const client = await connectDB;
+  // const db = client.db("forum");
+  // let result = await db.collection("post").find().toArray();
+  // console.log(result);
 
   return (
     <main className={styles.main}>

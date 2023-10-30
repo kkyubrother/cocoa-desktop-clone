@@ -12,6 +12,19 @@ import Image, { StaticImageData } from "next/image";
 import IconApple from "/public/img/apple.png";
 import IconSamsung from "/public/img/samsung.png";
 import IconBurgerking from "/public/img/burgerking.png";
+import IconPython from "/public/icon/python.png";
+import ReactIcon from "@/public/icon/react.png";
+import CSS3Icon from "@/public/icon/css3.png";
+import HTML5Icon from "@/public/icon/html5.png";
+import JavaIcon from "@/public/icon/java.png";
+import RustIcon from "@/public/icon/rust.png";
+import JavascriptIcon from "@/public/icon/javascript.png";
+import MariaDBIcon from "@/public/icon/mariadb.png";
+import NestJSIcon from "@/public/icon/NestJS.svg";
+import NextJSIcon from "@/public/icon/nextjs.svg";
+import NginxIcon from "@/public/icon/nginx.png";
+import NodeIcon from "@/public/icon/node.png";
+import UbuntuIcon from "@/public/icon/ubuntu.png";
 import Link from "next/link";
 
 const colors = [
@@ -57,6 +70,22 @@ const CHAT = [
     title: "버거왕",
     description: "와퍼는 맛있죠",
     count: 99,
+    time: "1시간 전",
+  },
+  {
+    id: 5,
+    icon: IconPython,
+    title: "파이썬",
+    description: "내가 가장 자신있는 파이썬!",
+    count: 1,
+    time: "1시간 전",
+  },
+  {
+    id: 6,
+    icon: ReactIcon,
+    title: "리액트",
+    description: "나의 날개",
+    count: 1,
     time: "1시간 전",
   },
 ];

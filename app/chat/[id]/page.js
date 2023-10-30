@@ -18,6 +18,18 @@ import IconApple from "/public/img/apple.png";
 import IconSamsung from "/public/img/samsung.png";
 import IconBurgerking from "/public/img/burgerking.png";
 import IconPython from "/public/icon/python.png";
+import ReactIcon from "/public/icon/react.png";
+import CSS3Icon from "@/public/icon/css3.png";
+import HTML5Icon from "@/public/icon/html5.png";
+import JavaIcon from "@/public/icon/java.png";
+import RustIcon from "@/public/icon/rust.png";
+import JavascriptIcon from "@/public/icon/javascript.png";
+import MariaDBIcon from "@/public/icon/mariadb.png";
+import NestJSIcon from "@/public/icon/NestJS.svg";
+import NextJSIcon from "@/public/icon/nextjs.svg";
+import NginxIcon from "@/public/icon/nginx.png";
+import NodeIcon from "@/public/icon/node.png";
+import UbuntuIcon from "@/public/icon/ubuntu.png";
 import ChatBodyComponent from "./ChatBodyComponent";
 
 const CHAT_DATA = {
@@ -151,18 +163,67 @@ const CHAT_DATA = {
       },
       {
         type: "right",
-        message: "그래, 그러면서 sms 라이브러리도 포팅했지",
+        message:
+          "그래, 그러면서 sms 라이브러리([깃허브](https://github.com/kkyubrother/phps-sms-module))도 포팅했지",
         timeText: "오후 7:14",
       },
       {
         type: "right",
         message:
-          "그리고 유튜브 강의를 보며 공부하기 위한 강의 노트 사이트도 만들었지",
+          "그리고 유튜브 강의를 보며 공부하기 위한 [강의 노트 사이트](https://lecture.kesuna.com)([깃허브](https://github.com/kkyubrother/lecture_with_note_web))도 만들었지",
         timeText: "오후 7:14",
       },
       {
         type: "left",
         userImage: IconPython,
+        userName: "Python",
+        message:
+          "그래, Python으로 Backend를 구축하고, React와 CKEditor로 Frontend를 구축했지",
+        timeText: "오후 7:14",
+      },
+    ],
+  },
+
+  6: {
+    header: { userImage: ReactIcon, userName: ["React"] },
+    messages: [
+      {
+        type: "date",
+        dateText: "2023년 10월 19일 목요일",
+      },
+      {
+        type: "right",
+        message: "나에게 날개를 달아주는 리액트",
+        timeText: "오후 7:14",
+      },
+      {
+        type: "left",
+        userImage: ReactIcon,
+        userName: "React",
+        message: "칙칙한 백엔드에 날개같은 존재지",
+        timeText: "오후 7:14",
+      },
+      {
+        type: "left",
+        userImage: ReactIcon,
+        userName: "React",
+        message: "덕분에 스터디룸 관리 프로그램도 만들었지",
+        timeText: "오후 7:14",
+      },
+      {
+        type: "right",
+        message: "아, 아버지가 만들어달라는 앱도 Expo를 통해 만들었지.",
+        timeText: "오후 7:14",
+      },
+      {
+        type: "right",
+        message:
+          "그리고 유튜브 강의를 보며 공부하기 위한 [강의 노트 사이트](https://lecture.kesuna.com)([깃허브](https://github.com/kkyubrother/lecture_with_note_web))도 만들었지",
+        timeText: "오후 7:14",
+      },
+      {
+        type: "left",
+        userImage: ReactIcon,
         userName: "Python",
         message:
           "그래, Python으로 Backend를 구축하고, React와 CKEditor로 Frontend를 구축했지",
@@ -238,7 +299,7 @@ export default function Page(props) {
     ? // @ts-ignore
       CHAT_DATA[chat_id]
     : CHAT_DATA[1];
-  console.log(data);
+  // console.log(data);
 
   return (
     <main
