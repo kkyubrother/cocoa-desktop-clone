@@ -1,6 +1,4 @@
 import styles from "@/app/my/page.module.css";
-import UserImageComponent from "@/app/UserImageComponent";
-import { LoremIpsum } from "lorem-ipsum";
 import FriendListItemComponent from "/app/my/FriendListItemComponent";
 import AsideComponent from "@/app/common/AsideComponent";
 import PythonIcon from "@/public/icon/python.png";
