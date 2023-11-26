@@ -1,30 +1,39 @@
 import styles from "./page.module.css";
+import { IoQrCode } from "react-icons/io5";
 
-import UserImageComponent from "@/app/UserImageComponent";
-import LoginFormComponent from "@/app/LoginFormComponent";
+import LoginFormComponent from "/app/LoginFormComponent";
+
+import KakaoLogo from "/public/img/kakaotalk.png";
+import Image from "next/image";
+import LoginAutoLoginComponent from "/app/LoginAutoLoginComponent";
+import LoginFooterComponent from "/app/LoginFooterComponent";
+import LoginHeaderComponent from "/app/LoginHeaderComponent";
+import LoginQrComponent from "./LoginQrComponent";
 
 export default async function Home() {
   return (
     <main className={styles.main}>
-      <div className={"container"}>
+      <LoginHeaderComponent />
+
+      <div className={"container"} style={{ width: "80%", maxWidth: "480px" }}>
         <div className={"row"}>
-          <div className={"col is-center"}>
-            <UserImageComponent />
+          <div className={"col is-center"} style={{ marginTop: 64 }}>
+            <Image src={KakaoLogo} alt={"kakao"} width={100} />
+            {/*<UserImageComponent />*/}
           </div>
         </div>
+        <LoginFormComponent />
         <div className={"row"}>
-          <div className={"col is-center"}>
-            <p>kkyubrother.0@gmail.com</p>
+          <div
+            className={"col is-center " + styles.line}
+            style={{ color: "#7f7200", userSelect: "none" }}
+          >
+            또는
           </div>
         </div>
-        <div className={"row"}>
-          <div className={"col is-center"}>
-            <h5 className={styles.announceText}>잠금모드 상태입니다</h5>
-          </div>
-        </div>
-        <div className="row is-center">
-          <LoginFormComponent />
-        </div>
+        <LoginQrComponent />
+        <LoginAutoLoginComponent />
+        <LoginFooterComponent />
       </div>
     </main>
   );

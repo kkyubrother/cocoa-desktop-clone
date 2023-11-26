@@ -7,3 +7,28 @@
 .announceText {
     font-weight: bold;
 }
+.line {
+    display: flex;
+    flex-basis: 100%;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.35);
+    margin: 8px 0;
+}
+.line::before {
+    content: "";
+    flex-grow: 1;
+    margin: 0 16px;
+    background: rgba(0, 0, 0, 0.35);
+    height: 1px;
+    font-size: 0;
+    line-height: 0;
+}
+.line::after {
+    content: "";
+    flex-grow: 1;
+    margin: 0 16px;
+    background: rgba(0, 0, 0, 0.35);
+    height: 1px;
+    font-size: 0;
+    line-height: 0;
+}
