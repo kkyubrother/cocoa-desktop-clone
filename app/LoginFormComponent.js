@@ -33,9 +33,17 @@ export default function LoginFormComponent() {
     signIn("credentials", {
       email: email,
       password: password,
-      redirect: true,
+      redirect: false,
       callbackUrl: "/my",
-    }).then((result) => console.log(result));
+    }).then((response) => {
+      if (response.ok) {
+        router.push("/my");
+      } else {
+        return setErrorMessage(
+          "이메일 또는 비밀번호가 틀렸습니다.(데모: demo@demo.com / demo123!)",
+        );
+      }
+    });
     return;
 
     fetch("/api/signup", {

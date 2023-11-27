@@ -35,7 +35,6 @@ export default async function My() {
 
   const username = session.user.name;
   const user = session.user;
-  console.log(user);
 
   return (
     <main className={"is-full-width " + styles.main}>
