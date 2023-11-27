@@ -23,13 +23,21 @@
 * 빠르게 코드를 작성함에 있어서 Typescript의 데이터 형 맞추는 것이 되려 어려웠습니다.
   * Frontend만 있는 웹페이지는 Javascript로 만들어도 Backend까지 포함된다면 Typescript가 유리하다고 생각됩니다(데이터 타입 일치, IDE 문법 힌트 등).
 
-## ✨ 2.0.0을 만든다면 해보고 싶은 것
-* Backend를 만들어서 연동하기
-* Input 기능들을 실제로 구현하기
-  * 현재는 serverAction 기능이 실험적([출처](https://nextjs.org/docs/app/building-your-application/data-fetching/forms-and-mutations))
-* CSS를 작성하여 자연스러운 애니메이션 효과 삽입
-* Next-Auth를 활용하여 실제 로그인 기능 구현
+## ✨ ~~2.0.0을 만든다면 해보고 싶은 것~~ -> 2.0.0을 만들고 느낀 것
+* [x] Backend를 만들어서 연동하기
+  * Nextjs를 통한 Backend 기능을 사용해보며 API 설계에 대한 경험을 하였습니다.
+* [x] Input 기능들을 실제로 구현하기
+  * ~~현재는 serverAction 기능이 실험적~~([출처](https://nextjs.org/docs/app/building-your-application/data-fetching/forms-and-mutations))
+  * pages 기능을 통하여 작성
+  * 채팅 메시지를 보내고 받을 수 있음
+    * 현재 일정 주기마다 서버에 새로운 메시지를 확인하도록 작성하였습니다(`setInterval()` 활용).
+* [x] CSS를 작성하여 자연스러운 애니메이션 효과 삽입
+* [x] Next-Auth를 활용하여 실제 로그인 기능 구현
+  * 사용자 확인 후 접근 불가능한 페이지를 `redirect()` 처리하였습니다.
 
+## ✨ 3.0.0을 만든다면 해보고 싶은 것
+* 프로필 페이지를 추가해보고 싶습니다.
+* 새로운 메시지를 확인하는 것을 `setInterval()` 대신 `Websocket`을 활용해보고 싶습니다.
 
 # 출처
 ## 아이콘
