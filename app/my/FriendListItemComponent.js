@@ -1,21 +1,6 @@
-import UserImageListComponent from "@/app/my/UserImageListComponent";
-import { LoremIpsum } from "lorem-ipsum";
-import Image, { StaticImageData } from "next/image";
-import PythonImage from "@/public/icon/python.png";
+import Image from "next/image";
 import Link from "next/link";
 
-const lorem = new LoremIpsum({});
-const colors = [
-  {
-    main: "#94bfe7",
-    sub: "#c3dbf1",
-  },
-  {
-    main: "#8fcbdd",
-    sub: "#c1e2ec",
-  },
-  { main: "#a1b6e9", sub: "#cbd6f2" },
-];
 export default function FriendListItemComponent(props) {
   return (
     <div>

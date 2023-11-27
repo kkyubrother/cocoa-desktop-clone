@@ -1,5 +1,4 @@
 import styles from "./page.module.css";
-import { IoQrCode } from "react-icons/io5";
 
 import LoginFormComponent from "/app/LoginFormComponent";
 
@@ -9,8 +8,14 @@ import LoginAutoLoginComponent from "/app/LoginAutoLoginComponent";
 import LoginFooterComponent from "/app/LoginFooterComponent";
 import LoginHeaderComponent from "/app/LoginHeaderComponent";
 import LoginQrComponent from "./LoginQrComponent";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../pages/api/auth/[...nextauth]";
+import { redirect } from "next/navigation";
 
 export default async function Home() {
+  let session = await getServerSession(authOptions);
+  if (session) redirect("/my");
+
   return (
     <main className={styles.main}>
       <LoginHeaderComponent />

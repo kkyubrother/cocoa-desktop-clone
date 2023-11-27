@@ -10,7 +10,6 @@ export default function LoginQrComponent() {
         <button
           className={"button"}
           style={{ backgroundColor: "whitesmoke", width: "100%" }}
-          // onClick={() => alert("QR 코드 로그인")}
           onClick={() => signIn()}
         >
           <IoQrCode style={{ marginRight: "0.5rem" }} />

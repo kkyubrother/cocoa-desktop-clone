@@ -1,15 +1,16 @@
+import styles from "/app/common/aside/aside.module.css";
 import { BiSolidUser } from "react-icons/bi";
 import { BsEmojiSmile, BsFillChatFill, BsThreeDots } from "react-icons/bs";
 import { GoBell } from "react-icons/go";
 import { RiSettings3Line } from "react-icons/ri";
-import AsideBadge from "@/app/common/AsideBadgeComponent";
+import AsideBadge from "/app/common/aside/AsideBadgeComponent";
 import Link from "next/link";
 
 export default function AsideComponent(props) {
   const asideMainIconActivate = {
     my: props?.page === "/my",
     chat: props?.page === "/chat",
-    more: false,
+    more: props?.page === "/more",
   };
   const asideSubIconActivate = {
     smile: false,
@@ -85,35 +86,32 @@ export default function AsideComponent(props) {
             <AsideBadge length={999} />
           </div>
         </Link>
-        <BsThreeDots
-          style={{
-            ...asideMainIconStyle,
-            color: asideMainIconActivate.more ? "#343740" : "#909297",
-          }}
-        />
+        <Link href={"/more"}>
+          <BsThreeDots
+            style={{
+              ...asideMainIconStyle,
+              color: asideMainIconActivate.more ? "#343740" : "#909297",
+            }}
+          />
+        </Link>
       </div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
+      <div className={styles.aside_bottom_box}>
         {/*bottom icons*/}
         <BsEmojiSmile
+          className={styles.aside_bottom_icon}
           style={{
-            ...asideSubIconStyle,
             color: asideSubIconActivate.smile ? "#343740" : "#909297",
           }}
         />
         <GoBell
+          className={styles.aside_bottom_icon}
           style={{
-            ...asideSubIconStyle,
             color: asideSubIconActivate.alarm ? "#343740" : "#909297",
           }}
         />
         <RiSettings3Line
+          className={styles.aside_bottom_icon}
           style={{
-            ...asideSubIconStyle,
             color: asideSubIconActivate.setting ? "#343740" : "#909297",
           }}
         />
