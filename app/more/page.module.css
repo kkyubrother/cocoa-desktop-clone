@@ -1,0 +1,39 @@
+.icon_box {
+    width: 250px;
+    height: 250px;
+    font-size: 12rem;
+    text-align: center;
+    padding: 4rem;
+    background-color: rgba(83, 119, 143, 0.5);
+    clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+}
+.icon_box > svg {
+    animation-name: swing;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+@keyframes swing {
+    from {
+        rotate: 0;
+    }
+    25% {
+        rotate: -22.5deg;
+    }
+    50% {
+        rotate: 0;
+    }
+    75% {
+        rotate: 22.5deg;
+    }
+    to {
+        rotate: 0;
+    }
+}
+.text_box {
+    text-align: center;
+    font-size: 8rem;
+    font-weight: 600;
+    user-select: none;
+}

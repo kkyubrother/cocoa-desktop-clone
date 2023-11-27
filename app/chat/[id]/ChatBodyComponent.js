@@ -7,6 +7,7 @@ import UserImageComponent from "../../UserImageComponent";
 
 import { useEffect, useState } from "react";
 import renderMarkdownHyperlink from "../../../util/markdown";
+import { getIcon } from "../../../util/icon";
 
 function RowDate(props) {
   return (
@@ -44,7 +45,12 @@ function RowLeft(props) {
         }}
       >
         {props.userImage ? (
-          <Image src={props.userImage} alt={"icon"} width={60} height={60} />
+          <Image
+            src={getIcon(props.userImage)}
+            alt={"icon"}
+            width={60}
+            height={60}
+          />
         ) : (
           <UserImageComponent />
         )}
@@ -95,7 +101,32 @@ function RowRight(props) {
     </li>
   );
 }
-function ChatBodyComponent({ chat }) {
+function ChatBodyComponent({ id, chat }) {
+  const [chats, setChats] = useState(chat);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      fetch(`/api/message/list?id=${id.toString()}`)
+        .then((response) => {
+          if (response.status !== 200) {
+            return null;
+          } else {
+            return response.json();
+          }
+        })
+        .then((response) => {
+          if (response !== null) {
+            setChats(response.data);
+          }
+        });
+    }, 5000);
+
+    window.scrollTo(0, document.body.scrollHeight);
+    return () => {
+      clearInterval(timer);
+    };
+  }, [id]);
+
   return (
     <section
       style={{
@@ -106,13 +137,14 @@ function ChatBodyComponent({ chat }) {
       }}
     >
       <ol style={{ listStyle: "none", padding: 0 }}>
-        {chat.messages.map((message) => {
+        {chats.messages.map((message, index) => {
           switch (message.type) {
             case "date":
-              return <RowDate dateText={message.dateText ?? ""} />;
+              return <RowDate key={index} dateText={message.dateText ?? ""} />;
             case "right":
               return (
                 <RowRight
+                  key={index}
                   message={message.message ?? ""}
                   timeText={message.timeText ?? ""}
                 />
@@ -120,6 +152,7 @@ function ChatBodyComponent({ chat }) {
             case "left":
               return (
                 <RowLeft
+                  key={index}
                   userImage={message.userImage ?? null}
                   userName={message.userName ?? ""}
                   message={message.message ?? ""}
