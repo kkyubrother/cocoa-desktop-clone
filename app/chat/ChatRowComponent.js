@@ -11,7 +11,7 @@ export default function ChatRowComponent(props) {
       <div className={styles.chat_row_box}>
         <div className={styles.chat_row_left_box}>
           <div className={styles.chat_row_left_box_icon}>
-            {props.icon ? (
+            {getIcon(props.icon) ? (
               <Image
                 src={getIcon(props.icon)}
                 alt={"icon"}

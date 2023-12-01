@@ -49,7 +49,7 @@ export default async function My() {
           <div style={{ display: "flex", flexDirection: "row" }}>
             {result.map((res) => (
               <UpdatedProfileUserComponent
-                icon={getIcon(res.name)}
+                icon={res.name}
                 name={res.name}
                 key={res.email}
               />
@@ -70,58 +70,50 @@ export default async function My() {
             <FriendListItemComponent
               icon={PythonIcon}
               name={"Python"}
-              description={"나의 절친"}
+              description={"나의 절친, 군대부터 만난 인연이야."}
               link={"/chat/65644045c91761c4b6feb326"}
             />
             <FriendListItemComponent
               icon={ReactIcon}
               name={"React"}
-              description={"함께라면 즐거워"}
+              description={"동적 웹페이지 제작의 혁신이라고 생각해."}
             />
             <FriendListItemComponent
               icon={CSS3Icon}
               name={"CSS3"}
-              description={""}
+              description={"UI/UX에 중요한 요소!"}
             />
             <FriendListItemComponent
               icon={HTML5Icon}
               name={"HTML5"}
-              description={"함께라면 즐거워"}
+              description={"웹의 뼈대!"}
             />
             <FriendListItemComponent
               icon={JavascriptIcon}
               name={"Javascript"}
-              description={"함께라면 즐거워"}
+              description={"Frontend 개발의 핵심!"}
             />
             <FriendListItemComponent
               icon={MariaDBIcon}
               name={"MariaDB"}
-              description={"함께라면 즐거워"}
-            />
-            <FriendListItemComponent
-              icon={NestJSIcon}
-              name={"NestJS"}
-              description={"함께라면 즐거워"}
+              description={"다양한 서비스를 MariaDB를 이용하여 서비스해보았지."}
             />
             <FriendListItemComponent
               icon={NextJSIcon}
               name={"NextJS"}
-              description={"함께라면 즐거워"}
+              description={"이 웹사이트를 NextJS를 통해 만들었어."}
             />
             <FriendListItemComponent
               icon={NginxIcon}
               name={"Nginx"}
-              description={"함께라면 즐거워"}
-            />
-            <FriendListItemComponent
-              icon={NodeIcon}
-              name={"NodeJS"}
-              description={"함께라면 즐거워"}
+              description={
+                "주로 ReverseProxy를 활용한 React 웹사이트를 배포해보았어."
+              }
             />
             <FriendListItemComponent
               icon={UbuntuIcon}
               name={"Ubuntu"}
-              description={"함께라면 즐거워"}
+              description={"AWS 환경에서 서비스를 배포하고 운영해보았어."}
             />
           </div>
         </div>

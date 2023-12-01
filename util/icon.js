@@ -16,8 +16,20 @@ import Man1 from "/public/img/person/man-1.jpg";
 import Man2 from "/public/img/person/man-2.jpg";
 import Man3 from "/public/img/person/man-3.jpg";
 import Woman1 from "/public/img/person/woman-1.jpg";
+import QuestionMark from "/public/icon/question_mark.png";
+import StudyIcon from "/public/icon/study.png";
+import FlaskIcon from "/public/icon/flask.png";
+import LectureIcon from "/public/icon/lecture.png";
+import FastAPIIcon from "/public/icon/fastapi.png";
+import CocoaIcon from "/public/icon/cocoa.png";
 
-export function getIcon(name) {
+/**
+ *
+ * @param name {string}
+ * @param nullToQuestion {boolean}
+ * @return {*|null}
+ */
+export function getIcon(name, nullToQuestion = false) {
   switch (name) {
     case "apple":
       return IconApple;
@@ -59,7 +71,17 @@ export function getIcon(name) {
     case "woman1":
     case "demo3":
       return Woman1;
+    case "study":
+      return StudyIcon;
+    case "flask":
+      return FlaskIcon;
+    case "lecture":
+      return LectureIcon;
+    case "fastapi":
+      return FastAPIIcon;
+    case "cocoa":
+      return CocoaIcon;
     default:
-      return null;
+      return nullToQuestion ? QuestionMark : null;
   }
 }

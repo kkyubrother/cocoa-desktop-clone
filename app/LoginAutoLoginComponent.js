@@ -1,14 +1,17 @@
 "use client";
 import { IoMdInformationCircleOutline } from "react-icons/io";
 import { useEffect, useState } from "react";
+import { getCookie, setCookie } from "../util/cookie";
 
 export default function LoginAutoLoginComponent() {
   const [isCheck, setCheck] = useState(false);
+
   useEffect(() => {
-    const value = localStorage.getItem("cocoa.auto_complete");
-    if (value !== "true") setCheck(false);
-    else setCheck(true);
+    if (getCookie("auto_complete") === "true") setCheck(true);
   }, []);
+  useEffect(() => {
+    setCookie("auto_complete", `${isCheck}`);
+  }, [isCheck]);
 
   return (
     <div className={"row"}>

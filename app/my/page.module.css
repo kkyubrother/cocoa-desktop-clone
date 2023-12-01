@@ -87,6 +87,7 @@
 .my_profile_component_img {
     width: 60px;
     height: 60px;
+    border-radius: 25px;
 }
 .my_profile_component_body {
     line-height: 1rem;

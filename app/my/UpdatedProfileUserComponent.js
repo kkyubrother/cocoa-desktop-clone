@@ -3,6 +3,7 @@ import styles from "/app/my/page.module.css";
 import Image from "next/image";
 import UserImageListComponent from "./UserImageListComponent";
 import { getRandomUserColor } from "../../util/color";
+import { getIcon } from "../../util/icon";
 
 export default function UpdatedProfileUserComponent({ icon, name }) {
   return (
@@ -11,9 +12,9 @@ export default function UpdatedProfileUserComponent({ icon, name }) {
       onClick={() => alert(`${name}님의 프로필`)}
     >
       <div className={styles.updated_profile_component_image_box}>
-        {icon ? (
+        {getIcon(icon, true) ? (
           <Image
-            src={icon}
+            src={getIcon(icon)}
             alt={"icon"}
             width={40}
             height={40}

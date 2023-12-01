@@ -1,6 +1,6 @@
 "use client";
 
-import style from "@/app/chat/[id]/page.module.css";
+import style from "/app/chat/[id]/page.module.css";
 import { BsCalendar3 } from "react-icons/bs";
 import Image from "next/image";
 import UserImageComponent from "../../UserImageComponent";
@@ -35,7 +35,7 @@ function RowDate(props) {
 }
 function RowLeft(props) {
   return (
-    <li>
+    <li className={props.enableAnimation ? style.bubble_animation : ""}>
       <div
         style={{
           display: "flex",
@@ -74,7 +74,7 @@ function RowLeft(props) {
 }
 function RowRight(props) {
   return (
-    <li>
+    <li className={props.enableAnimation ? style.bubble_animation : ""}>
       <div
         style={{
           display: "flex",
@@ -102,9 +102,11 @@ function RowRight(props) {
   );
 }
 function ChatBodyComponent({ id, chat }) {
-  const [chats, setChats] = useState(chat);
+  const [messages, setMessages] = useState([]);
 
   useEffect(() => {
+    if (chat.disabled) return;
+
     const timer = setInterval(() => {
       fetch(`/api/message/list?id=${id.toString()}`)
         .then((response) => {
@@ -116,16 +118,40 @@ function ChatBodyComponent({ id, chat }) {
         })
         .then((response) => {
           if (response !== null) {
-            setChats(response.data);
+            setMessages(response.data.messages);
           }
         });
     }, 5000);
 
-    window.scrollTo(0, document.body.scrollHeight);
     return () => {
       clearInterval(timer);
     };
-  }, [id]);
+  }, [chat, id]);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      left: 0,
+      behavior: "smooth",
+    });
+  }, [messages]);
+
+  useEffect(() => {
+    if (!chat.disabled) return;
+
+    const messages = [];
+    let idx = 0;
+    const timer = setInterval(() => {
+      messages.push(chat.data.messages[idx]);
+      setMessages([...messages]);
+      idx += 1;
+      if (idx >= chat.data.messages.length) clearInterval(timer);
+    }, 1000);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, [chat]);
 
   return (
     <section
@@ -137,7 +163,7 @@ function ChatBodyComponent({ id, chat }) {
       }}
     >
       <ol style={{ listStyle: "none", padding: 0 }}>
-        {chats.messages.map((message, index) => {
+        {messages.map((message, index) => {
           switch (message.type) {
             case "date":
               return <RowDate key={index} dateText={message.dateText ?? ""} />;
@@ -147,6 +173,7 @@ function ChatBodyComponent({ id, chat }) {
                   key={index}
                   message={message.message ?? ""}
                   timeText={message.timeText ?? ""}
+                  enableAnimation={chat.disabled ?? false}
                 />
               );
             case "left":
@@ -157,6 +184,7 @@ function ChatBodyComponent({ id, chat }) {
                   userName={message.userName ?? ""}
                   message={message.message ?? ""}
                   timeText={message.timeText ?? ""}
+                  enableAnimation={chat.disabled ?? false}
                 />
               );
             default:

@@ -13,10 +13,10 @@ export default async function Page(props) {
 
   const { id } = props.params;
   let db = (await connectDB).db("forum");
-  let result = await db.collection("chat").findOne({
+  let chat = await db.collection("chat").findOne({
     _id: new ObjectId(id),
   });
-  const data = result.data;
+  const data = chat.data;
 
   return (
     <main
@@ -26,8 +26,8 @@ export default async function Page(props) {
         userImage={data.header.userImage}
         userName={data.header.userName}
       />
-      <ChatBodyComponent id={id} chat={data} />
-      <FooterComponent id={id} />
+      <ChatBodyComponent id={id} chat={chat} />
+      <FooterComponent id={id} chat={chat} />
     </main>
   );
 }

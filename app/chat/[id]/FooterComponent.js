@@ -10,7 +10,7 @@ import { TbCapture } from "react-icons/tb";
 import styles from "./page.module.css";
 import { useState } from "react";
 
-export default function FooterComponent({ id }) {
+export default function FooterComponent({ id, chat }) {
   const [message, setMessage] = useState("");
   const handleSendMessage = () => {
     fetch("/api/message/send", {
@@ -33,6 +33,7 @@ export default function FooterComponent({ id }) {
           }}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
+          disabled={chat.disabled}
         />
       </div>
       <div className={styles.footer_icon_row}>
@@ -58,6 +59,7 @@ export default function FooterComponent({ id }) {
             }}
             className={styles.btn_send}
             onClick={handleSendMessage}
+            disabled={chat.disabled}
           >
             전송
           </button>

@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Cocoa Desktop Clone",
-  description: "Cocoa Desktop Clone",
+  description: "카카오톡 데스크탑 클론 코딩입니다.",
   viewport: {
     width: "device-width",
     initialScale: 1,
