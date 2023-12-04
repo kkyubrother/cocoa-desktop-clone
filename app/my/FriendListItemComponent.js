@@ -6,9 +6,10 @@ export default function FriendListItemComponent(props) {
     <div>
       <Link href={props?.link ?? "/chat"}>
         <div
-          className={"row"}
           style={{
             cursor: "pointer",
+            display: "flex",
+            flexDirection: "row",
           }}
         >
           <div
@@ -34,6 +35,12 @@ export default function FriendListItemComponent(props) {
             <p
               style={{
                 color: "#737373",
+                width: "100%",
+                lineHeight: "2rem",
+                overflowX: "hidden",
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
+                maxWidth: "calc(100vw - 100px - 60px)",
               }}
             >
               {props.description}

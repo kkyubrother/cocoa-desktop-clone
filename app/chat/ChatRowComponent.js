@@ -22,9 +22,9 @@ export default function ChatRowComponent(props) {
               <UserImageListComponent {...getRandomUserColor()} />
             )}
           </div>
-          <div className={styles.chat_row_left_box_text}>
+          <div className={styles.chat_row_left_box_container}>
             <p className={styles.chat_row_left_box_title}>{props.title}</p>
-            <p>{props.description}</p>
+            <p className={styles.chat_row_left_box_text}>{props.description}</p>
           </div>
         </div>
         <div className={styles.chat_row_right_box}>

@@ -67,18 +67,31 @@
     height: 40px;
     border-radius: 16px;
 }
-.chat_row_left_box_text {
-    line-height: 0.5rem;
+.chat_row_left_box_container {
+    line-height: 2rem;
     height: 60px;
-    padding-block: 1rem;
     margin-left: 10px;
     font-size: 1.2rem;
     color: #737373;
+
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: calc(100vw - 100px - 60px - 80px);
 }
 .chat_row_left_box_title {
     font-weight: 600;
+    margin-bottom: 0;
     color: black;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
+.chat_row_left_box_text {
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+ }
 .chat_row_right_box {
     position: relative;
 }
