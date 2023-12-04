@@ -94,6 +94,8 @@
     height: 60px;
     padding-block: 1rem;
     margin-left: 10px;
+
+    min-width: 72px;
 }
 .my_profile_component_body_name {
     font-weight: 600;
