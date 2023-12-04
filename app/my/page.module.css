@@ -127,6 +127,25 @@
     vertical-align: center;
     color: black;
 }
+.my_profile_component_status_text_extra {
+}
+@media (max-width: 420px) {
+    .my_profile_component_container {
+        width: 100%;
+    }
+    .my_profile_component_body {
+        width: calc(100% - 60px);
+    }
+    .my_profile_component_body_description {
+        max-width: calc(100vw - 100px - 60px - 116px + 50px);
+    }
+    .my_profile_component_status {
+        min-width: 32px;
+    }
+    .my_profile_component_status_text_extra {
+        display: none;
+    }
+}
 .updated_profile_component {
     cursor: pointer;
     margin-right: 2rem;

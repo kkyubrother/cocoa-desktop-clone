@@ -19,8 +19,10 @@ export default function ChannelComponent() {
           height={40}
           className={styles.extra_component_children_icon_img}
         />
-        <div className={styles.extra_component_children_title}>채널</div>
-        <div className={styles.extra_component_children_count}>14</div>
+        <div className={styles.extra_component_children_title}>
+          채널
+          <span className={styles.extra_component_children_count}>14</span>
+        </div>
       </div>
     </ExtraComponent>
   );

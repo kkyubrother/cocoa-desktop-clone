@@ -48,7 +48,9 @@ export default function MyProfileComponent({ user }) {
         </div>
         <div className={styles.my_profile_component_status}>
           <p className={styles.my_profile_component_status_text}>
-            상태메시지
+            <span className={styles.my_profile_component_status_text_extra}>
+              상태메시지
+            </span>
             <BsPlusLg />
           </p>
         </div>

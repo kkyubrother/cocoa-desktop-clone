@@ -20,8 +20,8 @@ export default function BirthdayFriendComponent() {
         />
         <div className={styles.extra_component_children_title}>
           친구의 생일을 확인해보세요!
+          <span className={styles.extra_component_children_count}>6</span>
         </div>
-        <div className={styles.extra_component_children_count}>6</div>
       </div>
     </ExtraComponent>
   );
