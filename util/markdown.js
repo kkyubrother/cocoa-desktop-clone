@@ -1,3 +1,5 @@
+import { IoMdLink } from "react-icons/io";
+
 const renderMarkdownHyperlink = (message) => {
   const lines = message.split("\n");
   const parsedText = lines.map((line, index) => {
@@ -7,6 +9,7 @@ const renderMarkdownHyperlink = (message) => {
       if (idx % 3 === 1) {
         return (
           <a key={idx} href={parts[idx + 1]}>
+            <IoMdLink />
             {part}
           </a>
         );

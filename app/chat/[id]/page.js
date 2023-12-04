@@ -12,11 +12,18 @@ export default async function Page(props) {
   if (!session) redirect("/");
 
   const { id } = props.params;
+  let data = {};
+  let chat = null;
   let db = (await connectDB).db("forum");
-  let chat = await db.collection("chat").findOne({
-    _id: new ObjectId(id),
-  });
-  const data = chat.data;
+  try {
+    chat = await db.collection("chat").findOne({
+      _id: new ObjectId(id),
+    });
+    data = chat.data;
+  } catch (e) {
+    console.error(e);
+    redirect("/chat");
+  }
 
   return (
     <main
