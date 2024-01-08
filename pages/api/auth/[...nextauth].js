@@ -63,7 +63,21 @@ export const authOptions = {
     },
     //5. 유저 세션이 조회될 때 마다 실행되는 코드
     session: async ({ session, token }) => {
+      let db = (await connectDB).db("forum");
+      let user = await db
+        .collection("user_cred")
+        .findOne({ email: token.user.email });
+      if (!user) {
+        let test_db = (await connectDB).db("test");
+        user = await test_db
+          .collection("users")
+          .findOne({ email: token.user.email });
+      }
+
       session.user = token.user;
+      session.db = {
+        _id: user._id,
+      };
       return session;
     },
   },

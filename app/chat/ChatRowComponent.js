@@ -23,7 +23,10 @@ export default function ChatRowComponent(props) {
             )}
           </div>
           <div className={styles.chat_row_left_box_container}>
-            <p className={styles.chat_row_left_box_title}>{props.title}</p>
+            <p className={styles.chat_row_left_box_title}>
+              {props.title}
+              {props.disabled && "(DEMO)"}
+            </p>
             <p className={styles.chat_row_left_box_text}>{props.description}</p>
           </div>
         </div>

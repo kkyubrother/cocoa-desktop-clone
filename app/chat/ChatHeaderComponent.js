@@ -9,8 +9,10 @@ import {
   BsXLg,
 } from "react-icons/bs";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function ChatHeaderComponent() {
+  const router = useRouter();
   const [openSearch, setOpenSearch] = useState(false);
   const [isSearchFocus, setSearchFocus] = useState(false);
   const handleSearch = () => {
@@ -18,6 +20,35 @@ export default function ChatHeaderComponent() {
   };
   const handleSearchClose = () => {
     setOpenSearch(false);
+  };
+  const handleNewChat = () => {
+    const emails = window.prompt(
+      "추가하길 원하는 이메일을 입력하세요. 여러 이메일을 추가하려면 사이에 ';'을 넣으세요.",
+    );
+
+    const target_user_emails = emails
+      .split(";")
+      .map((v) => v.trim())
+      .filter((v) => /.+@.+\..+/.test(v));
+    const emails_str = target_user_emails.join(";");
+
+    fetch("/api/chat/create", {
+      method: "POST",
+      body: JSON.stringify({ emails: emails_str }),
+    })
+      .then((response) => {
+        if (response.status === 201) {
+          return response.json();
+        } else if (response.status === 400) {
+          alert("잘못된 이메일입니다.");
+        } else if (response.status === 404) {
+          alert("해당 이메일이 없습니다.");
+        }
+      })
+      .then((response) => router.push(`/chat/${response.chat_id}`))
+      .catch((reason) => {
+        alert(`에러: ${reason}`);
+      });
   };
   return (
     <div className={styles.chat_header_box}>
@@ -30,7 +61,7 @@ export default function ChatHeaderComponent() {
           <div onClick={() => alert("오픈 채팅")}>
             <BsWechat />
           </div>
-          <div onClick={() => alert("새로운 채팅")}>
+          <div onClick={handleNewChat}>
             <BsFillPlusCircleFill />
           </div>
         </div>

@@ -12,14 +12,22 @@ import { useState } from "react";
 
 export default function FooterComponent({ id, chat }) {
   const [message, setMessage] = useState("");
+  const [isDisabled, setDisabled] = useState(false);
   const handleSendMessage = () => {
+    setDisabled(true);
     fetch("/api/message/send", {
       method: "POST",
       body: JSON.stringify({ id: id.toString(), message }),
-    }).then((response) => {
-      console.log(response);
-      setMessage("");
-    });
+    })
+      .then((response) => {
+        console.log(response);
+        setMessage("");
+        setDisabled(false);
+      })
+      .catch((reason) => {
+        console.error(reason);
+        setDisabled(false);
+      });
   };
 
   return (
@@ -33,7 +41,8 @@ export default function FooterComponent({ id, chat }) {
           }}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          disabled={chat.disabled}
+          disabled={chat.disabled || isDisabled}
+          placeholder={chat.disabled && "DEMO 대화는 채팅 입력이 불가합니다."}
         />
       </div>
       <div className={styles.footer_icon_row}>

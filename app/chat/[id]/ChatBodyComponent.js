@@ -33,6 +33,31 @@ function RowDate(props) {
     </li>
   );
 }
+function RowLoading(props) {
+  return (
+    <li
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        marginBottom: "1rem",
+      }}
+    >
+      <div
+        style={{
+          backgroundColor: "#a7b9c9",
+          borderRadius: "50px",
+          padding: "3px 20px",
+          display: "flex",
+          alignItems: "center",
+          fontWeight: 700,
+        }}
+      >
+        <div className={style.spinner}></div>
+        {props.text}
+      </div>
+    </li>
+  );
+}
 function RowLeft(props) {
   return (
     <li className={props.enableAnimation ? style.bubble_animation : ""}>
@@ -102,7 +127,9 @@ function RowRight(props) {
   );
 }
 function ChatBodyComponent({ id, chat }) {
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState(
+    chat.disabled ? [] : chat.data.messages,
+  );
 
   useEffect(() => {
     if (chat.disabled) return;
@@ -121,7 +148,7 @@ function ChatBodyComponent({ id, chat }) {
             setMessages(response.data.messages);
           }
         });
-    }, 5000);
+    }, 700);
 
     return () => {
       clearInterval(timer);
@@ -134,7 +161,7 @@ function ChatBodyComponent({ id, chat }) {
       left: 0,
       behavior: "smooth",
     });
-  }, [messages]);
+  }, [messages.length]);
 
   useEffect(() => {
     if (!chat.disabled) return;
@@ -165,6 +192,8 @@ function ChatBodyComponent({ id, chat }) {
       <ol style={{ listStyle: "none", padding: 0 }}>
         {messages.map((message, index) => {
           switch (message.type) {
+            case "loading":
+              return <RowLoading key={index} text={message.text ?? ""} />;
             case "date":
               return <RowDate key={index} dateText={message.dateText ?? ""} />;
             case "right":

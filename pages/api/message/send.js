@@ -1,9 +1,15 @@
 import { connectDB } from "../../../util/database";
 import { ObjectId } from "mongodb";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]";
 
 export default async function handler(request, response) {
   if (request.method !== "POST") {
     return response.status(400).json({ message: "bad request" });
+  }
+  let session = await getServerSession(request, response, authOptions);
+  if (!session) {
+    return response.status(403).json({ message: "forbidden" });
   }
 
   const { id, message } = JSON.parse(request.body);
@@ -12,6 +18,13 @@ export default async function handler(request, response) {
   let result = await db.collection("chat").findOne({
     _id: new ObjectId(id),
   });
+  if (
+    result._id.toString() !== id &&
+    !result.participants.map((u) => u.toString()).includes(id)
+  ) {
+    return response.status(404).json({ message: "not found" });
+  }
+
   const data = result.data;
   const messages = [...result.data.messages];
 
@@ -32,7 +45,9 @@ export default async function handler(request, response) {
     date.toLocaleTimeString().split(":")[1]
   }`;
   messages.push({
-    type: "right",
+    type: "follow_user",
+    userName: session.user.name,
+    owner_id: session.db._id,
     message: message,
     timeText: timeText,
   });
@@ -44,24 +59,6 @@ export default async function handler(request, response) {
       $set: { data: data },
     },
   );
-
-  setTimeout(async () => {
-    messages.push({
-      type: "left",
-      message: message,
-      userImage: result.data.header.userImage,
-      userName: result.data.header.userName[0],
-      timeText: timeText,
-    });
-
-    data.messages = messages;
-    const res = await db.collection("chat").updateOne(
-      { _id: new ObjectId(id) },
-      {
-        $set: { data: data },
-      },
-    );
-  }, 5000);
 
   return response.status(200).json({ message: "ok" });
 }

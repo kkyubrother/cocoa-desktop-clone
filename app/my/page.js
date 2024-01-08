@@ -19,6 +19,33 @@ export default async function My() {
   if (!session) redirect("/");
 
   let db = (await connectDB).db("forum");
+  let my_chat = await db
+    .collection("chat")
+    .find({ _id: session.db._id })
+    .toArray();
+  if (my_chat.length === 0) {
+    let d = new Date();
+    let time_str = d.getHours() < 12 ? "오전 " : "오후 ";
+    time_str += `${d.getHours()}`.padStart(2, "0");
+    time_str += ":";
+    time_str += `${d.getMinutes()}`.padStart(2, "0");
+
+    await db.collection("chat").insertOne({
+      _id: session.db._id,
+      title: "저장한 메세지",
+      description: "저장한 메세지",
+      count: 1,
+      time: time_str,
+      data: {
+        header: {
+          userImage: null,
+          userName: [session.user.name],
+        },
+        messages: [],
+      },
+    });
+  }
+
   let result = await db.collection("user_cred").find().toArray();
   result = result.filter((res) => res.email !== session.user.email);
 

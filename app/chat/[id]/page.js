@@ -20,6 +20,19 @@ export default async function Page(props) {
       _id: new ObjectId(id),
     });
     data = chat.data;
+    chat._id = chat._id.toString();
+    chat.participants = chat.participants?.map((u) => u.toString());
+
+    data.messages = data.messages.map((m) => {
+      if (m.type === "follow_user") {
+        m.type =
+          m.owner_id.toString() === session.db._id.toString()
+            ? "right"
+            : "left";
+        delete m.owner_id;
+      }
+      return m;
+    });
   } catch (e) {
     console.error(e);
     redirect("/chat");
